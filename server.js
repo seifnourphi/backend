@@ -128,6 +128,17 @@ app.use('/uploads', (req, res, next) => {
   next();
 }, express.static(path.join(__dirname, 'uploads')));
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Ridaa E-commerce API',
+    version: '1.0.0',
+    status: 'online',
+    health: '/health',
+    docs: '/api/docs' // if you have any
+  });
+});
+
 // Health check endpoint (no rate limiting)
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
