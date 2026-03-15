@@ -3,7 +3,7 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - production
+      - master
       - staging
 
 jobs:
@@ -16,9 +16,9 @@ jobs:
       - name: Set environment specific variables
         id: vars
         run: |
-          if [ "${{ github.ref_name }}" = "production" ]; then
-            echo "DEPLOY_PATH=/var/www/ridaa-production" >> $GITHUB_OUTPUT
-            echo "ENV_FILE_CONTENT=${{ secrets.PRODUCTION_ENV_FILE }}" >> $GITHUB_OUTPUT
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            echo "DEPLOY_PATH=/var/www/ridaa-master" >> $GITHUB_OUTPUT
+            echo "ENV_FILE_CONTENT=${{ secrets.master_ENV_FILE }}" >> $GITHUB_OUTPUT
             echo "CONTAINER_NAME=ridaa-backend-prod" >> $GITHUB_OUTPUT
             echo "PORT=5002" >> $GITHUB_OUTPUT
           else
